@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { filterCountryByName } from "../../../store/countrySlice";
+import { searchCountryByName } from "../../../store/countrySlice";
 
 function SearchBar() {
 	const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function SearchBar() {
 				type="text"
 				className="search-input"
 				placeholder="Search for a country..."
-				onChange={(e) => dispatch(filterCountryByName(e.target.value))}
+				onChange={(e) => dispatch(searchCountryByName(e.target.value))}
 			/>
 		</label>
 	);
