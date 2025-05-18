@@ -7,7 +7,7 @@ function SearchBar() {
 	const dispatch = useDispatch();
 
 	return (
-		<div className="search-bar">
+		<label className="search-bar">
 			<IoIosSearch className="search-icon" />
 			<input
 				type="text"
@@ -15,7 +15,7 @@ function SearchBar() {
 				placeholder="Search for a country..."
 				onChange={(e) => dispatch(filterCountryByName(e.target.value))}
 			/>
-		</div>
+		</label>
 	);
 }
 
