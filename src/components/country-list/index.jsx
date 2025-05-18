@@ -4,7 +4,7 @@ import { fetchCountries } from "../../store/countrySlice";
 
 function CountryList() {
 	const dispatch = useDispatch();
-	const { data } = useSelector((state) => state.countries);
+	const { filteredData } = useSelector((state) => state.countries);
 
 	useEffect(() => {
 		dispatch(fetchCountries());
@@ -12,8 +12,8 @@ function CountryList() {
 
 	return (
 		<div className="country-list">
-			{data.length > 1 &&
-				data.map((country) => (
+			{filteredData.length > 0 &&
+				filteredData.map((country) => (
 					<div className="country" key={country.name.common}>
 						<img src={country.flags.png} alt={country.flags.alt} />
 

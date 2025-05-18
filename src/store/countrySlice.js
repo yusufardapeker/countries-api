@@ -10,24 +10,23 @@ const countrySlice = createSlice({
 	name: "countries",
 	initialState: {
 		data: [],
+		filteredData: [],
 	},
-	reducers: {},
+	reducers: {
+		filterCountryByName: (state, action) => {
+			state.filteredData = state.data.filter((country) =>
+				country.name.common.toLowerCase().startsWith(action.payload.trim().toLowerCase())
+			);
+		},
+	},
 	extraReducers: (builder) => {
-		builder
-			.addCase(fetchCountries.pending, (state) => {
-				state.status = "loading";
-			})
-			.addCase(fetchCountries.fulfilled, (state, action) => {
-				state.status = "succeeded";
-				state.data = action.payload;
-			})
-			.addCase(fetchCountries.rejected, (state, action) => {
-				state.status = "failed";
-				state.error = action.error.message;
-			});
+		builder.addCase(fetchCountries.fulfilled, (state, action) => {
+			state.data = action.payload;
+			state.filteredData = action.payload;
+		});
 	},
 });
 
-export const {} = countrySlice.actions;
+export const { filterCountryByName } = countrySlice.actions;
 
 export default countrySlice.reducer;
