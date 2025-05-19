@@ -170,5 +170,24 @@ main {
 				}
 			}
 		}
+
+		.empty-screen {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: var(--white);
+			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			padding: 16px 24px;
+			border-radius: 4px;
+
+			.empty-screen-text {
+				width: 20ch;
+				line-height: 1.5;
+			}
+			.empty-screen-icon {
+				width: 36px;
+				height: 36px;
+			}
+		}
 	}
 }
