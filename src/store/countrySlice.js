@@ -11,12 +11,49 @@ const countrySlice = createSlice({
 	initialState: {
 		data: [],
 		filteredData: [],
+		selectedRegionData: [],
+		searchedCountry: "",
+		selectedRegion: "",
+		showDropdown: false,
 	},
 	reducers: {
-		filterCountryByName: (state, action) => {
-			state.filteredData = state.data.filter((country) =>
-				country.name.common.toLowerCase().startsWith(action.payload.trim().toLowerCase())
+		searchCountryByName: (state, action) => {
+			state.searchedCountry = action.payload.trim().toLowerCase();
+
+			if (state.selectedRegion) {
+				state.filteredData = state.selectedRegionData.filter((country) =>
+					country.name.common.toLowerCase().startsWith(state.searchedCountry)
+				);
+			} else {
+				state.filteredData = state.data.filter((country) =>
+					country.name.common.toLowerCase().startsWith(state.searchedCountry)
+				);
+			}
+		},
+
+		filterCountryByRegion: (state, action) => {
+			state.selectedRegion = action.payload;
+			state.searchedCountry = "";
+
+			state.selectedRegionData = state.data.filter(
+				(country) => country.region === state.selectedRegion
 			);
+
+			state.filteredData = state.selectedRegionData;
+		},
+
+		resetSelectedRegion: (state) => {
+			state.selectedRegion = "";
+			state.searchedCountry = "";
+			state.filteredData = state.data;
+		},
+
+		toggleDropdown: (state) => {
+			state.showDropdown = !state.showDropdown;
+		},
+
+		hideDropDown: (state) => {
+			state.showDropdown = false;
 		},
 	},
 	extraReducers: (builder) => {
@@ -27,6 +64,12 @@ const countrySlice = createSlice({
 	},
 });
 
-export const { filterCountryByName } = countrySlice.actions;
+export const {
+	searchCountryByName,
+	filterCountryByRegion,
+	toggleDropdown,
+	hideDropDown,
+	resetSelectedRegion,
+} = countrySlice.actions;
 
 export default countrySlice.reducer;
