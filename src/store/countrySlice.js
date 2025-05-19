@@ -15,6 +15,7 @@ const countrySlice = createSlice({
 		searchedCountry: "",
 		selectedRegion: "",
 		showDropdown: false,
+		loading: true,
 	},
 	reducers: {
 		searchCountryByName: (state, action) => {
@@ -57,10 +58,15 @@ const countrySlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchCountries.fulfilled, (state, action) => {
-			state.data = action.payload;
-			state.filteredData = action.payload;
-		});
+		builder
+			.addCase(fetchCountries.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(fetchCountries.fulfilled, (state, action) => {
+				state.data = action.payload;
+				state.filteredData = action.payload;
+				state.loading = false;
+			});
 	},
 });
 
