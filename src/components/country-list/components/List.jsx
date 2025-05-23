@@ -8,7 +8,11 @@ function List() {
 	return (
 		<>
 			{filteredData.map((country) => (
-				<Link to={`/${country.name.common}`} className="country" key={country.name.common}>
+				<Link
+					to={`/${country.name.common.split(" ").join("_")}`}
+					className="country"
+					key={country.name.common}
+				>
 					<img src={country.flags.png} alt={country.flags.alt} />
 
 					<div className="country-info-wrapper">

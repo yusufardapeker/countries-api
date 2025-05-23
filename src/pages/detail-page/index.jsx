@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function DetailPage() {
-	const { name } = useParams();
-	const { data, filteredData } = useSelector((state) => state.countries);
+	const { data } = useSelector((state) => state.countries);
+	const location = useLocation();
+	const navigate = useNavigate();
 
-	const selectedCountryArray = filteredData.filter((country) => country.name.common === name);
+	const fullUrl = location.pathname;
+	const splittedUrl = location.pathname.split("/");
+	const selectedCountryName = splittedUrl[splittedUrl.length - 1].replaceAll("_", " ");
+
+	const selectedCountryArray = data.filter(
+		(country) => country.name.common === selectedCountryName
+	);
 	const selectedCountry = selectedCountryArray[0];
 
 	const selectedCountryNativeNames = Object.values(selectedCountry.name.nativeName);
@@ -23,6 +32,22 @@ function DetailPage() {
 		return matchedCountries.name.common;
 	});
 
+	const handleNavigate = (border) => {
+		const dashedBorderName = border.split(" ").join("_");
+
+		navigate(`${fullUrl}/${dashedBorderName}`);
+	};
+
+	const handleGoBack = () => {
+		splittedUrl.pop();
+
+		if (splittedUrl.length > 1) {
+			navigate(`${splittedUrl.join("/")}`);
+		} else {
+			navigate("/");
+		}
+	};
+
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -31,6 +56,11 @@ function DetailPage() {
 
 	return (
 		<div className="country-detail">
+			<button className="go-back-button" onClick={() => handleGoBack()}>
+				<FaArrowLeftLong className="arrow-icon" />
+				Back
+			</button>
+
 			{selectedCountryArray.map((country) => (
 				<div className="country" key={country.name.common}>
 					<img src={country.flags.png} alt={country.flags.alt} />
@@ -90,9 +120,13 @@ function DetailPage() {
 							<div className="border-links-wrapper">
 								{country.borders ? (
 									formattedBorderCountries.map((border, index) => (
-										<Link className="border-link" key={index}>
+										<button
+											onClick={() => handleNavigate(border)}
+											className="border-link"
+											key={index}
+										>
 											{border}
-										</Link>
+										</button>
 									))
 								) : (
 									<div className="empty-border border-link">

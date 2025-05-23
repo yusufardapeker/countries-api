@@ -18,7 +18,7 @@ export const routes = createBrowserRouter([
 					},
 
 					{
-						path: "/:name",
+						path: "/:name/*",
 						element: <DetailPage />,
 					},
 
