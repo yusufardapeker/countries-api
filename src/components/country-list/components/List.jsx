@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function List() {
 	const { filteredData } = useSelector((state) => state.countries);
@@ -7,7 +8,7 @@ function List() {
 	return (
 		<>
 			{filteredData.map((country) => (
-				<div className="country" key={country.name.common}>
+				<Link to={`/${country.name.common}`} className="country" key={country.name.common}>
 					<img src={country.flags.png} alt={country.flags.alt} />
 
 					<div className="country-info-wrapper">
@@ -28,7 +29,7 @@ function List() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</Link>
 			))}
 		</>
 	);
