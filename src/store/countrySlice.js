@@ -53,7 +53,7 @@ const countrySlice = createSlice({
 			state.showDropdown = !state.showDropdown;
 		},
 
-		hideDropDown: (state) => {
+		hideDropdown: (state) => {
 			state.showDropdown = false;
 		},
 	},
@@ -74,7 +74,7 @@ export const {
 	searchCountryByName,
 	filterCountryByRegion,
 	toggleDropdown,
-	hideDropDown,
+	hideDropdown,
 	resetSelectedRegion,
 } = countrySlice.actions;
 

@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	filterCountryByRegion,
-	hideDropDown,
+	hideDropdown,
 	resetSelectedRegion,
 	toggleDropdown,
 } from "../../../store/countrySlice";
@@ -19,12 +19,12 @@ function CustomSelect() {
 
 	const handleChooseRegion = (e) => {
 		dispatch(filterCountryByRegion(e.target.innerText));
-		dispatch(hideDropDown());
+		dispatch(hideDropdown());
 	};
 
 	const handleResetRegion = () => {
 		dispatch(resetSelectedRegion());
-		dispatch(hideDropDown());
+		dispatch(hideDropdown());
 	};
 
 	return (
