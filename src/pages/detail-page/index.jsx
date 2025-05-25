@@ -99,7 +99,7 @@ function DetailPage() {
 							<div className="country-info-social">
 								<div className="top-level-domain">
 									<span className="field-key">Top Level Domain:</span>
-									<span className="field-value">{country.tld}</span>
+									<span className="field-value">{country.tld[0]}</span>
 								</div>
 
 								<div className="currencies">
