@@ -9,13 +9,21 @@
 	--font-weight-s: 300;
 	--font-weight-l: 600;
 	--font-weight-xl: 800;
+
+	&:has([data-theme="light"]) {
+		color-scheme: light;
+	}
+
+	&:has([data-theme="dark"]) {
+		color-scheme: dark;
+	}
 }
 
 body {
 	font-family: "Nunito Sans", sans-serif;
 	font-size: 14px;
-	background-color: var(--grey-50);
-	color: var(--grey-950);
+	background-color: light-dark(var(--grey-50), var(--blue-950));
+	color: light-dark(var(--grey-950), var(--white));
 }
 
 @mixin containerElement() {
@@ -34,7 +42,7 @@ body {
 }
 
 header {
-	background-color: var(--white);
+	background-color: light-dark(var(--white), var(--blue-900));
 	box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
 	margin-bottom: 40px;
 
@@ -53,6 +61,7 @@ header {
 			display: flex;
 			align-items: center;
 			gap: 8px;
+			cursor: pointer;
 
 			.theme-text {
 				font-weight: var(--font-weight-l);
@@ -69,7 +78,7 @@ main {
 		margin-bottom: 48px;
 
 		.search-bar {
-			background-color: var(--white);
+			background-color: light-dark(var(--white), var(--blue-900));
 			box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 			display: flex;
 			align-items: center;
@@ -85,8 +94,12 @@ main {
 			}
 
 			.search-input {
-				background-color: var(--white);
+				background-color: light-dark(var(--white), var(--blue-900));
 				flex: 1;
+
+				&:focus {
+					outline: none;
+				}
 
 				&::placeholder {
 					color: var(--grey-400);
@@ -100,14 +113,14 @@ main {
 				align-items: center;
 				justify-content: space-between;
 				padding: 16px 24px;
-				background-color: var(--white);
+				background-color: light-dark(var(--white), var(--blue-900));
 				box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 				width: 230px;
 				margin-bottom: 8px;
 			}
 
 			.custom-select-dropdown {
-				background-color: var(--white);
+				background-color: light-dark(var(--white), var(--blue-900));
 				box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 				width: 230px;
 				padding: 16px 24px;
@@ -122,6 +135,7 @@ main {
 					align-items: center;
 					justify-content: space-between;
 					gap: 12px;
+					cursor: pointer;
 
 					.cross-icon {
 						display: none;
@@ -146,8 +160,8 @@ main {
 		.country {
 			width: 270px;
 			margin-inline: auto;
-			background-color: var(--white);
-			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			background-color: light-dark(var(--white), var(--blue-900));
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 			border-radius: 8px;
 
 			img {
@@ -177,7 +191,7 @@ main {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			background-color: var(--white);
+			background-color: light-dark(var(--white), var(--blue-900));
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 			padding: 16px 24px;
 			border-radius: 4px;
@@ -193,7 +207,7 @@ main {
 		}
 
 		.skeleton-element {
-			background-color: var(--white);
+			background-color: light-dark(var(--white), var(--blue-900));
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 			.skeleton-img {
@@ -216,7 +230,7 @@ main {
 			}
 
 			.skeleton-info-wrapper {
-				background-color: var(--white);
+				background-color: light-dark(var(--white), var(--blue-900));
 				padding: 24px 24px 40px;
 
 				.skeleton-name {
@@ -279,7 +293,7 @@ main {
 		padding-bottom: 24px;
 
 		.go-back-button {
-			background-color: var(--white);
+			background-color: light-dark(var(--white), var(--blue-900));
 			box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 			display: flex;
 			align-items: center;
@@ -339,7 +353,7 @@ main {
 						gap: 12px;
 
 						.border-link {
-							background-color: var(--white);
+							background-color: light-dark(var(--white), var(--blue-900));
 							min-width: 98px;
 							box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 							padding: 6px 8px;
@@ -357,7 +371,7 @@ main {
 	.error-page {
 		display: flex;
 		justify-content: center;
-		background-color: var(--white);
+		background-color: light-dark(var(--white), var(--blue-900));
 		border-radius: 4px;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		padding: 16px;
@@ -373,7 +387,7 @@ main {
 		align-items: center;
 		gap: 16px;
 		padding: 16px;
-		background-color: var(--white);
+		background-color: light-dark(var(--white), var(--blue-900));
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 4px;
 		font-size: 18px;
