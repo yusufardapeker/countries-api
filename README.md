@@ -4,8 +4,8 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 ### Links
 
-Used API: [API](https://restcountries.com)
-Live Site URL: [Go to the Website](https://your-live-site-url.com)
+Used API: [API](https://restcountries.com)\
+Live Site URL: [The Website](https://country-api-5039.netlify.app/)
 
 ### Built with
 
