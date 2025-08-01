@@ -1,7 +1,7 @@
 // features/dataSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchCountries = createAsyncThunk("data/fetchCountries", async (data) => {
+export const fetchCountries = createAsyncThunk("data/fetchCountries", async () => {
 	// This request is no longer available. More info (https://gitlab.com/restcountries/restcountries/-/issues/265)
 	// const res = await fetch("https://restcountries.com/v3.1/all");
 
@@ -27,11 +27,11 @@ const countrySlice = createSlice({
 
 			if (state.selectedRegion) {
 				state.filteredData = state.selectedRegionData.filter((country) =>
-					country.name.common.toLowerCase().startsWith(state.searchedCountry)
+					country.name.toLowerCase().startsWith(state.searchedCountry)
 				);
 			} else {
 				state.filteredData = state.data.filter((country) =>
-					country.name.common.toLowerCase().startsWith(state.searchedCountry)
+					country.name.toLowerCase().startsWith(state.searchedCountry)
 				);
 			}
 		},

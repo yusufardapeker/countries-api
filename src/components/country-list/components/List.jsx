@@ -8,15 +8,11 @@ function List() {
 	return (
 		<>
 			{filteredData.map((country) => (
-				<Link
-					to={`/${country.name.common.split(" ").join("_")}`}
-					className="country"
-					key={country.name.common}
-				>
+				<Link to={`/${country.name.split(" ").join("_")}`} className="country" key={country.name}>
 					<img src={country.flags.png} alt={country.flags.alt} />
 
 					<div className="country-info-wrapper">
-						<p className="country-name">{country.name.common}</p>
+						<p className="country-name">{country.name}</p>
 
 						<div className="country-info">
 							<div className="population">
@@ -29,7 +25,7 @@ function List() {
 							</div>
 							<div className="capital">
 								<span className="field-key">Capital:</span>
-								<span className="field-value">{country.capital?.join(", ")}</span>
+								<span className="field-value">{country.capital || "Has no"}</span>
 							</div>
 						</div>
 					</div>
@@ -39,4 +35,6 @@ function List() {
 	);
 }
 
+// country.capital?.join(", ")
+// country.name.common.split(" ").join("_")
 export { List };

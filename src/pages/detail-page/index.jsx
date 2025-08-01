@@ -13,23 +13,17 @@ function DetailPage() {
 	const splittedUrl = location.pathname.split("/");
 	const selectedCountryName = splittedUrl[splittedUrl.length - 1].replaceAll("_", " ");
 
-	const selectedCountryArray = data.filter(
-		(country) => country.name.common === selectedCountryName
-	);
+	const selectedCountryArray = data.filter((country) => country.name === selectedCountryName);
 	const selectedCountry = selectedCountryArray[0];
 
-	const selectedCountryNativeNames = Object.values(selectedCountry.name.nativeName);
-	const selectedCountryNativeName =
-		selectedCountryNativeNames[selectedCountryNativeNames.length - 1].common;
+	const selectedCountryCurrencies = selectedCountry.currencies[0].name;
 
-	const selectedCountryCurrencies = Object.values(selectedCountry.currencies)[0].name;
-
-	const selectedCountryLanguages = Object.values(selectedCountry.languages);
+	const selectedCountryLanguages = selectedCountry.languages.map((languages) => languages.name);
 
 	const formattedBorderCountries = selectedCountry.borders?.map((border) => {
-		const matchedCountries = data.find((country) => country.cca3 === border);
+		const matchedCountries = data.find((country) => country.alpha3Code === border);
 
-		return matchedCountries.name.common;
+		return matchedCountries.name;
 	});
 
 	const handleNavigate = (border) => {
@@ -62,17 +56,17 @@ function DetailPage() {
 			</button>
 
 			{selectedCountryArray.map((country) => (
-				<div className="country" key={country.name.common}>
+				<div className="country" key={country.name}>
 					<img src={country.flags.png} alt={country.flags.alt} />
 
 					<div className="country-info">
-						<p className="country-name">{country.name.common}</p>
+						<p className="country-name">{country.name}</p>
 
 						<div className="country-info-wrapper">
 							<div className="country-info-geographics">
 								<div className="native-name">
 									<span className="field-key">Native Name:</span>
-									<span className="field-value">{selectedCountryNativeName}</span>
+									<span className="field-value">{country.nativeName}</span>
 								</div>
 
 								<div className="population">
@@ -92,14 +86,14 @@ function DetailPage() {
 
 								<div className="capital">
 									<span className="field-key">Capital:</span>
-									<span className="field-value">{country.capital.join(", ")}</span>
+									<span className="field-value">{country.capital}</span>
 								</div>
 							</div>
 
 							<div className="country-info-social">
 								<div className="top-level-domain">
 									<span className="field-key">Top Level Domain:</span>
-									<span className="field-value">{country.tld[0]}</span>
+									<span className="field-value">{country.topLevelDomain[0]}</span>
 								</div>
 
 								<div className="currencies">
