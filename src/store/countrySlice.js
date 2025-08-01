@@ -1,10 +1,15 @@
 // features/dataSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+export const delay = (ms) => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 export const fetchCountries = createAsyncThunk("data/fetchCountries", async () => {
 	// This request is no longer available. More info (https://gitlab.com/restcountries/restcountries/-/issues/265)
 	// const res = await fetch("https://restcountries.com/v3.1/all");
 
+	await delay(500);
 	const res = await fetch("/data.json");
 	return await res.json();
 });
