@@ -209,6 +209,9 @@ main {
 		.skeleton-element {
 			background-color: light-dark(var(--white), var(--blue-900));
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			width: 270px;
+			margin-left: auto;
+			margin-right: auto;
 
 			.skeleton-img {
 				background-color: var(--grey-400);
