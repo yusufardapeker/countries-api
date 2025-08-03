@@ -35,6 +35,4 @@ function List() {
 	);
 }
 
-// country.capital?.join(", ")
-// country.name.common.split(" ").join("_")
 export { List };
