@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 function DetailPage() {
-	const { data } = useSelector((state) => state.countries);
+	const { data, scrollLocation } = useSelector((state) => state.countries);
 	const location = useLocation();
 	const navigate = useNavigate();
 
@@ -34,11 +34,20 @@ function DetailPage() {
 
 	const handleGoBack = () => {
 		splittedUrl.pop();
+		const triggerTimeAfterNavigate = 500;
 
 		if (splittedUrl.length > 1) {
 			navigate(`${splittedUrl.join("/")}`);
 		} else {
 			navigate("/");
+
+			// If omit delay some of the scroll pixels is applying to detail page.
+			setTimeout(() => {
+				window.scrollTo({
+					top: scrollLocation,
+					behavior: "smooth",
+				});
+			}, triggerTimeAfterNavigate);
 		}
 	};
 

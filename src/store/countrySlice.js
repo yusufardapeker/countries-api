@@ -25,6 +25,7 @@ const countrySlice = createSlice({
 		showDropdown: false,
 		loading: true,
 		currentTheme: "light",
+		scrollLocation: 0,
 	},
 	reducers: {
 		searchCountryByName: (state, action) => {
@@ -69,6 +70,9 @@ const countrySlice = createSlice({
 		changeTheme: (state) => {
 			state.currentTheme = state.currentTheme === "dark" ? "light" : "dark";
 		},
+		setScrollLocation: (state, action) => {
+			state.scrollLocation = action.payload.toFixed();
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -90,6 +94,7 @@ export const {
 	hideDropdown,
 	resetSelectedRegion,
 	changeTheme,
+	setScrollLocation,
 } = countrySlice.actions;
 
 export default countrySlice.reducer;
