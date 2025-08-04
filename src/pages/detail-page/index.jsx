@@ -16,7 +16,9 @@ function DetailPage() {
 	const selectedCountryArray = data.filter((country) => country.name === selectedCountryName);
 	const selectedCountry = selectedCountryArray[0];
 
-	const selectedCountryCurrencies = selectedCountry.currencies[0].name;
+	const selectedCountryCurrencies = selectedCountry.currencies
+		? selectedCountry.currencies[0].name
+		: "Has no currencies";
 
 	const selectedCountryLanguages = selectedCountry.languages.map((languages) => languages.name);
 
@@ -95,7 +97,7 @@ function DetailPage() {
 
 								<div className="capital">
 									<span className="field-key">Capital:</span>
-									<span className="field-value">{country.capital}</span>
+									<span className="field-value">{country.capital || "Has no capital"}</span>
 								</div>
 							</div>
 
