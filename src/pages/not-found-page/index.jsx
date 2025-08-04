@@ -6,8 +6,8 @@ function NotFoundPage() {
 		<div className="not-found-page">
 			<p className="not-found-message">The page you are looking for is missing...</p>
 
-			<Link to="/" className="go-home-button">
-				Go Home
+			<Link to="/" className="go-list-button">
+				Go List Page
 			</Link>
 		</div>
 	);
